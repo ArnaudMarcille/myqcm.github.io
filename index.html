@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'">
+    <title>My QCM</title>
+    <link href="./Content/Dependencies/bootstrap-5.2.1-dist/css/bootstrap.min.css" rel="stylesheet"
+        crossorigin="anonymous">
+    <script src="./Content/Dependencies/bootstrap-5.2.1-dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="./Content/Dependencies/bootstrap-5.2.1-dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    <script src="./Content/Dependencies/jquery/jquery-3.6.1.min.js"></script>
+    <script src="./Renderer/QCMRenderer.js"></script>
+
+    <link href="./Content/css/site.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar NavBarCustom">
+        <div class="container-fluid">
+            <a class="nav-link" id="BackLink" draggable="false" href="./index.html"
+                translated-code="QCM-Btn_Back">&#x2039; Back</a>
+            <span id="content" class="navbar-brand mb-0 h1"></span>
+            <span id="Page"></span>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row firstRow"></div>
+        <div class="row" id="QuestionContainer">
+            <div class="col-sm-12">
+                <div class="card">
+                    <h5 id="Question_Label" class="card-header">
+                    </h5>
+                    <div class="card-body">
+                        <div id="Response_Quantity" class="container">
+
+                        </div>
+                        <div id="Question_Utility_Label" class="card-text" translated-code="QCM-Question_Detail"></div>
+                        <div id="Question_explanation" class="alert alert-info" role="alert">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="FinalContainer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div id="FinalAnswerStats" class="alert" role="alert">
+                            <p translated-code="QCM-Stats_Results"></p> : #=CorrectAnwser#/#=Total#. #=percentage#% <p
+                                translated-code="QCM-Stats_OfCorrectAnswers"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12" id="FinalAnswerSummary">
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="FinalCardSummary" class="col-sm-12">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar fixed-bottom NavBarCustom">
+        <div class="FooterQCMButton">
+            <button id="Next_Answer" type="button" class="btn btn-primary NextQCMButton"
+                translated-code="QCM-Btn_Next">Question suivante</button>
+            <button id="Valid_Answer" type="button" class="btn btn-primary NextQCMButton"
+                translated-code="QCM-Btn_Validate">Valider</button>
+            <a id="Quit" type="button" class="btn btn-danger" href="./index.html" draggable="false"
+                translated-code="QCM-Btn_Quit">Quitter</a>
+        </div>
+    </nav>
+</body>
+
+</html>

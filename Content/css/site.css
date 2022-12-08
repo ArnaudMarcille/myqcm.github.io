@@ -1,0 +1,100 @@
+@media (prefers-color-scheme: dark) {
+    :root {
+        --baseBackgroundColor: #30323b;
+        --FullBackgroundColor: #44464e;
+        --NavBarBackground: #3f3f3f;
+        --TextColor: #fff;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --baseBackgroundColor: #f0f0f0;
+        --FullBackgroundColor: #f3f3f3;
+        --NavBarBackground: #c0c0c0;
+        --TextColor: #383e42;
+    }
+}
+
+img {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.card-header{
+    color: #383e42;
+}
+.card-text{
+    color: #383e42;
+}
+
+.logo {
+    height: 100px;
+    width: 100px;
+}
+
+body {
+    background: linear-gradient(200deg, var(--baseBackgroundColor) 0%, var(--FullBackgroundColor) 100%);
+    color: var(--TextColor);
+    background-attachment: fixed;
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+    /* Standard syntax */
+    padding-bottom: 5rem;
+}
+
+.firstRow {
+    margin-top: 5%;
+}
+
+.FileSelector {
+    cursor: pointer;
+}
+
+.NavBarCustom {
+    background-color: var(--NavBarBackground);
+}
+
+.formRow {
+    margin-bottom: 16px;
+}
+
+.FooterQCMButton {
+    width: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.PreviousQCMButton {
+    float: left;
+}
+
+.NextQCMButton {
+    float: right;
+}
+
+.navbar-brand {
+    color: var(--TextColor) !important;
+}
+
+.btn {
+    transition: 0.2s;
+}
+
+.alert {
+    transition: 0.5s;
+}
+
+#FinalAnswerSummary {
+    margin-bottom: 16px;
+}
+
+.cardExtension {
+    margin-bottom: 16px;
+}

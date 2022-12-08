@@ -1,0 +1,14 @@
+{
+    "Home-Title":"Please select the folder containing your QCMs",
+    "Home-Btn_SelectFolder":"Select folder",
+    "Home-Btn_SelectFile":">",
+    "QCM-Btn_Back":"< Back",
+    "QCM-Btn_Validate":"Validate",
+    "QCM-Btn_Next":"Next question",
+    "QCM-Btn_Quit":"Quit",
+    "QCM-Question_Detail":"Select one or multiple answer",
+    "QCM-Stats_Results":"Results",
+    "QCM-Stats_OfCorrectAnswers":" of correct answers.",
+    "QCM-Stats_NoAnswer":"You did not provide any answer.",
+    "QCM-Stats_YourAnswers":"Your answers : "
+}
