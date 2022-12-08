@@ -4,13 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'">
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'"> -->
     <title>My QCM</title>
-    <link href="./Content/Dependencies/bootstrap-5.2.1-dist/css/bootstrap.min.css" rel="stylesheet"
-        crossorigin="anonymous">
-    <script src="./Content/Dependencies/bootstrap-5.2.1-dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
-    <script src="./Content/Dependencies/bootstrap-5.2.1-dist/js/bootstrap.bundle.min.js"
-        crossorigin="anonymous"></script>
+    <link href="./Content/Dependencies/bootstrap-5.2.1-dist/css/bootstrap.min.css" rel="stylesheet"        >
+    <script src="./Content/Dependencies/bootstrap-5.2.1-dist/js/bootstrap.min.js"></script>
+    <script src="./Content/Dependencies/bootstrap-5.2.1-dist/js/bootstrap.bundle.min.js" ></script>
     <script src="./Content/Dependencies/jquery/jquery-3.6.1.min.js"></script>
     <script src="./Renderer/QCMRenderer.js"></script>
 
@@ -26,8 +24,19 @@
             <span id="Page"></span>
         </div>
     </nav>
+
+
     <div class="container">
         <div class="row firstRow"></div>
+        <div class="row" id="InitialContainer">
+            <form>
+                <div class="mb-3">
+                    <label for="in-FileSelector" class="form-label">Load the qcm csv file</label>
+                    <input class="form-control" type="file" id="in-FileSelector" accept=".csv">
+                  </div>
+                <a  class="btn btn-primary" id="btn-send_File">Start QCM</a>
+              </form>
+        </div>
         <div class="row" id="QuestionContainer">
             <div class="col-sm-12">
                 <div class="card">
@@ -72,11 +81,11 @@
     <nav class="navbar fixed-bottom NavBarCustom">
         <div class="FooterQCMButton">
             <button id="Next_Answer" type="button" class="btn btn-primary NextQCMButton"
-                translated-code="QCM-Btn_Next">Question suivante</button>
+                translated-code="QCM-Btn_Next">Next</button>
             <button id="Valid_Answer" type="button" class="btn btn-primary NextQCMButton"
-                translated-code="QCM-Btn_Validate">Valider</button>
+                translated-code="QCM-Btn_Validate">Validate</button>
             <a id="Quit" type="button" class="btn btn-danger" href="./index.html" draggable="false"
-                translated-code="QCM-Btn_Quit">Quitter</a>
+                translated-code="QCM-Btn_Quit">Quit</a>
         </div>
     </nav>
 </body>

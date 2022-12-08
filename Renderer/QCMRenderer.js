@@ -7,10 +7,8 @@ const FinalSummarydefaultGroupContainer = '<div class="list-group-item col-1"></
 const FinalSummaryCard = '<div id="#=Id#" class="card cardExtension"><h5 class="card-header #=Border#">#=Question#</h5><div class="card-body"><div class="container"><ul class="list-group cardExtension">#=Answers#</ul></div><div class="card-text cardExtension text-Secondary">#=UserAnswer#</div><div class="alert alert-info" role="alert">#=Explanation#</div></div></div>';
 
 var Page = 0;
-let labels;
+let labels = [];
 const Content = []
-const $ = require('../Content/Dependencies/jquery/jquery-3.6.1.min.js');
-const { ipcRenderer, contentTracing } = require('electron');
 const results = [];
 
 window.onload = function () {
@@ -18,37 +16,113 @@ window.onload = function () {
     let searchParams = new URLSearchParams(url.search);
     console.log(searchParams.get('Path'));
     document.getElementById("content").innerHTML = searchParams.get('Name');
-    ipcRenderer.send('GetFileQCM', searchParams.get('Path'))
-    ipcRenderer.send('GetLabels');
 
     document.getElementById('Valid_Answer').addEventListener('click', ValidAnwser);
     document.getElementById('Next_Answer').addEventListener('click', Next_Question);
+    document.getElementById('btn-send_File').addEventListener('click', LoadFile);
+
+    LoadLabels();
 
     $("#FinalContainer").hide();
+    $('#QuestionContainer').hide();
     $("#Quit").hide();
+    $('#Next_Answer').hide();
+    $('#Valid_Answer').hide();
 }
 
-ipcRenderer.on('GetLabelsResponse', (event, data) => {
-    labels = data
-})
+function LoadLabels() {
+    labels["Home-Title"] = "Please select the folder containing your QCMs";
+    labels["Home-Btn_SelectFolder"] = "Select folder";
+    labels["Home-Btn_SelectFile"] = ">";
+    labels["QCM-Btn_Back"] = "< Back";
+    labels["QCM-Btn_Validate"] = "Validate";
+    labels["QCM-Btn_Next"] = "Next question";
+    labels["QCM-Btn_Quit"] = "Quit";
+    labels["QCM-Question_Detail"] = "Select one or multiple answer";
+    labels["QCM-Stats_Results"] = "Results";
+    labels["QCM-Stats_OfCorrectAnswers"] = " of correct answers.";
+    labels["QCM-Stats_NoAnswer"] = "You did not provide any answer.";
+    labels["QCM-Stats_YourAnswers"] = "Your answers : ";
 
-ipcRenderer.on('FileQCM', (_event, data) => {
-    if (data == null && data.length > 1) {
+    let items = document.querySelectorAll(`[translated-code]`);
+    items.forEach(item => {
+        let attributeValue = item.getAttribute('translated-code');
+        item.innerHTML = labels[attributeValue] == undefined ? attributeValue : labels[attributeValue];
+    })
+}
+
+function LoadFile() {
+    var input = document.getElementById("in-FileSelector");
+    if (input == undefined && input.files.length < 1) {
         return;
     }
 
-    for (let i = 1; i < data.length; i++) {
-        Content.push(data[i]);
+    var file = input.files[0];
+
+    if (file == undefined) {
+        return;
     }
 
-    console.log(data);
+    var reader = new FileReader();
+
+    reader.addEventListener('load', ReadFile);
+
+    reader.readAsBinaryString(file);
+}
+
+function readUTF8String(bytes) {
+    var ix = 0;
+
+    if (bytes.slice(0, 3) == "\xEF\xBB\xBF") {
+        ix = 3;
+    }
+
+    var string = "";
+    for (; ix < bytes.length; ix++) {
+        var byte1 = bytes[ix].charCodeAt(0);
+        if (byte1 < 0x80) {
+            string += String.fromCharCode(byte1);
+        } else if (byte1 >= 0xC2 && byte1 < 0xE0) {
+            var byte2 = bytes[++ix].charCodeAt(0);
+            string += String.fromCharCode(((byte1 & 0x1F) << 6) + (byte2 & 0x3F));
+        } else if (byte1 >= 0xE0 && byte1 < 0xF0) {
+            var byte2 = bytes[++ix].charCodeAt(0);
+            var byte3 = bytes[++ix].charCodeAt(0);
+            string += String.fromCharCode(((byte1 & 0xFF) << 12) + ((byte2 & 0x3F) << 6) + (byte3 & 0x3F));
+        } else if (byte1 >= 0xF0 && byte1 < 0xF5) {
+            var byte2 = bytes[++ix].charCodeAt(0);
+            var byte3 = bytes[++ix].charCodeAt(0);
+            var byte4 = bytes[++ix].charCodeAt(0);
+            var codepoint = ((byte1 & 0x07) << 18) + ((byte2 & 0x3F) << 12) + ((byte3 & 0x3F) << 6) + (byte4 & 0x3F);
+            codepoint -= 0x10000;
+            string += String.fromCharCode(
+                (codepoint >> 10) + 0xD800, (codepoint & 0x3FF) + 0xDC00
+            );
+        }
+    }
+
+    return string;
+}
+
+function ReadFile(e) {
+    var textContent = readUTF8String(e.target.result);
+    let rows = textContent.split('\r\n');
+
+    for (let i = 1; i < rows.length; i++) {
+        if (rows[i] != '' && rows[i].split(';').length > 4) {
+            Content.push(rows[i].split(';'));
+        }
+    }
+
+    console.log(rows);
+
+    $('#InitialContainer').hide();
+    $('#QuestionContainer').show();
 
     LoadQuestion(1);
-})
+}
 
 //#region Questions management
-
-
 function Next_Question() {
     if (Page < Content.length) {
         LoadQuestion(Page + 1);
