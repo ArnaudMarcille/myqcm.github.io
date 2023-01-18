@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'"> -->
+    <title>My QCM</title>
+    <link href="./Content/Dependencies/bootstrap-5.2.1-dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="./Content/Dependencies/bootstrap-5.2.1-dist/js/bootstrap.min.js"></script>
+    <script src="./Content/Dependencies/bootstrap-5.2.1-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./Content/Dependencies/jquery/jquery-3.6.1.min.js"></script>
+    <script src="./Renderer/CSVJoin.js"></script>
+
+    <link href="./Content/css/site.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar NavBarCustom">
+        <div class="container-fluid">
+            <a class="nav-link" id="BackLink" draggable="false" href="./index.html"
+                translated-code="QCM-Btn_Back">&#x2039; Back</a>
+            <span id="content" class="navbar-brand mb-0 h1"></span>
+            <span id="Page"></span>
+        </div>
+    </nav>
+
+
+    <div class="container">
+        <div class="row firstRow"></div>
+        <div class="row" id="QCM_Joiner">
+            <form>
+                <div class="mb-3">
+                    <label for="in-FileSelector" class="form-label">File name</label>
+                    <input class="form-control" type="text" id="in-FinalFileName">
+
+                </div>
+                <div class="mb-3">
+                    <label for="in-FileSelector" class="form-label">Select files</label>
+                    <input class="form-control" type="file" id="in-FileSelector" multiple accept=".csv">
+
+                </div>
+                <a class="btn btn-primary" id="btn-send_File">Join files</a>
+            </form>
+        </div>
+        <div class="row" id="Logs">
+            <div class="alert alert-secondary"  id="Logs_Content"role="alert">
+                Waiting for files...
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar fixed-bottom NavBarCustom">
+    </nav>
+</body>
+
+</html>

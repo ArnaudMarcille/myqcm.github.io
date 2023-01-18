@@ -6,9 +6,9 @@
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'"> -->
     <title>My QCM</title>
-    <link href="./Content/Dependencies/bootstrap-5.2.1-dist/css/bootstrap.min.css" rel="stylesheet"        >
+    <link href="./Content/Dependencies/bootstrap-5.2.1-dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="./Content/Dependencies/bootstrap-5.2.1-dist/js/bootstrap.min.js"></script>
-    <script src="./Content/Dependencies/bootstrap-5.2.1-dist/js/bootstrap.bundle.min.js" ></script>
+    <script src="./Content/Dependencies/bootstrap-5.2.1-dist/js/bootstrap.bundle.min.js"></script>
     <script src="./Content/Dependencies/jquery/jquery-3.6.1.min.js"></script>
     <script src="./Renderer/QCMRenderer.js"></script>
 
@@ -33,9 +33,9 @@
                 <div class="mb-3">
                     <label for="in-FileSelector" class="form-label">Load the qcm csv file</label>
                     <input class="form-control" type="file" id="in-FileSelector" accept=".csv">
-                  </div>
-                <a  class="btn btn-primary" id="btn-send_File">Start QCM</a>
-              </form>
+                </div>
+                <a class="btn btn-primary" id="btn-send_File">Start QCM</a>
+            </form>
         </div>
         <div class="row" id="QuestionContainer">
             <div class="col-sm-12">
@@ -48,7 +48,7 @@
                         </div>
                         <div id="Question_Utility_Label" class="card-text" translated-code="QCM-Question_Detail"></div>
                         <div id="Question_explanation" class="alert alert-info" role="alert">
-                            
+
                         </div>
                     </div>
                 </div>
@@ -86,6 +86,7 @@
                 translated-code="QCM-Btn_Validate">Validate</button>
             <a id="Quit" type="button" class="btn btn-danger" href="./index.html" draggable="false"
                 translated-code="QCM-Btn_Quit">Quit</a>
+            <a id="CSV_Join_button" type="button" class="btn btn-info" href="./CSVJoin.html" draggable="false">Concat QCMs</a>
         </div>
     </nav>
 </body>

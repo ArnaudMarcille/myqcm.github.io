@@ -116,7 +116,17 @@ function ReadFile(e) {
 
     console.log(rows);
 
+    // randomize questions
+    for (let i = Content.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const temp = Content[i];
+        Content[i] = Content[j];
+        Content[j] = temp;
+    }
+
     $('#InitialContainer').hide();
+    $('#InitialContainer').hide();
+    $('#CSV_Join_button').hide();
     $('#QuestionContainer').show();
 
     LoadQuestion(1);
