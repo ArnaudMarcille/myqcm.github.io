@@ -63,6 +63,16 @@ function LoadFile() {
         return;
     }
 
+    if (file.name.split('.').pop() != 'csv') {
+        let toastLiveExample = document.getElementById('liveToast')
+        let toast = new bootstrap.Toast(toastLiveExample)
+        toast.show()
+
+        return;
+    }
+
+
+
     var reader = new FileReader();
 
     reader.addEventListener('load', ReadFile);
@@ -122,6 +132,19 @@ function ReadFile(e) {
         const temp = Content[i];
         Content[i] = Content[j];
         Content[j] = temp;
+    }
+
+    let amount = document.getElementById("in-MaxAmountOfQuestion").value;
+    if (amount) {
+        let tempContent = [];
+        for (let i = 0; i < amount; i++) {
+            tempContent.push(Content[i]);
+        }
+        Content.splice(0, Content.length)
+
+        for (let i = 0; i < tempContent.length; i++) {
+            Content.push(tempContent[i]);
+        }
     }
 
     $('#InitialContainer').hide();
