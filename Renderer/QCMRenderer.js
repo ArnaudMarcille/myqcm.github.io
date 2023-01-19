@@ -11,6 +11,13 @@ let labels = [];
 const Content = []
 const results = [];
 
+$(document).keypress(
+    function (event) {
+        if (event.which == '13') {
+            event.preventDefault();
+        }
+    });
+
 window.onload = function () {
     let url = new URL(document.location.href);
     let searchParams = new URLSearchParams(url.search);
@@ -135,7 +142,7 @@ function ReadFile(e) {
     }
 
     let amount = document.getElementById("in-MaxAmountOfQuestion").value;
-    if (amount) {
+    if (amount && amount < Content.length) {
         let tempContent = [];
         for (let i = 0; i < amount; i++) {
             tempContent.push(Content[i]);
